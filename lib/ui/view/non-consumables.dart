@@ -4,12 +4,12 @@ import 'package:flutter_iap_demo/ui/widget/shop_item.dart';
 import 'package:flutter_iap_demo/utility/iap_util.dart';
 import 'package:huawei_iap/IapClient.dart';
 
-class Consumables extends StatefulWidget {
+class NonConsumables extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ConsumablesState();
+  State<StatefulWidget> createState() => _NonConsumablesState();
 }
 
-class _ConsumablesState extends State<Consumables> {
+class _NonConsumablesState extends State<NonConsumables> {
   @override
   void initState() {
     // TODO: implement initState
@@ -22,7 +22,7 @@ class _ConsumablesState extends State<Consumables> {
       body: Container(
         padding: EdgeInsets.all(16),
         child: FutureBuilder(
-          future: IapUtil.getConsumableProducts(),
+          future: IapUtil.getNonConsumableProducts(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
               return Container(
@@ -34,7 +34,7 @@ class _ConsumablesState extends State<Consumables> {
               return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return shopItem(context, snapshot, index, IapClient.IN_APP_CONSUMABLE);
+                  return shopItem(context, snapshot, index, IapClient.IN_APP_NONCONSUMABLE);
                 },
               );
             }

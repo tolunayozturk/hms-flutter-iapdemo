@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iap_demo/ui/widget/purchase_button.dart';
 
-Widget shopItem(BuildContext context, AsyncSnapshot snapshot, int index) {
+Widget shopItem(
+    BuildContext context, AsyncSnapshot snapshot, int index, int productType) {
   return Container(
     decoration: BoxDecoration(
         color: Colors.grey.withAlpha(32),
@@ -15,7 +16,7 @@ Widget shopItem(BuildContext context, AsyncSnapshot snapshot, int index) {
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
       ),
       subtitle: Text("${snapshot.data[index].productDesc}"),
-      trailing: purchaseButton(context, snapshot, index),
+      trailing: purchaseButton(context, snapshot, index, productType),
     ),
   );
 }
