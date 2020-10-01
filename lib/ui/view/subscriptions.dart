@@ -1,18 +1,15 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iap_demo/ui/widget/shop_item.dart';
 import 'package:flutter_iap_demo/utility/iap_util.dart';
 import 'package:huawei_iap/IapClient.dart';
-import 'package:huawei_iap/model/InAppPurchaseData.dart';
 
-class NonConsumables extends StatefulWidget {
+class Subscriptions extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _NonConsumablesState();
+  State<StatefulWidget> createState() => _SubscriptionsState();
 }
 
-class _NonConsumablesState extends State<NonConsumables> {
+class _SubscriptionsState extends State<Subscriptions> {
   @override
   void initState() {
     // TODO: implement initState
@@ -23,28 +20,15 @@ class _NonConsumablesState extends State<NonConsumables> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        label: Text("RESTORE PURCHASES"),
+        label: Text("MANAGE SUBSCRIPTIONS"),
         onPressed: () {
-          IapUtil.obtainOwnedPurchases(IapClient.IN_APP_NONCONSUMABLE)
-              .then((res) {
-            if (res.returnCode != 0) {
-              // Update UI
-              return;
-            }
-
-            for (InAppPurchaseData purchase in res.inAppPurchaseDataList) {
-              if (purchase.purchaseState == 0) {
-                log("Deliver the product: " + purchase.productId);
-                // Deliver the product.
-              }
-            }
-          });
+          // TODO:
         },
       ),
       body: Container(
         padding: EdgeInsets.all(16),
         child: FutureBuilder(
-          future: IapUtil.getNonConsumableProducts(),
+          future: IapUtil.getSubscriptions(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
               return Container(
@@ -57,7 +41,7 @@ class _NonConsumablesState extends State<NonConsumables> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return shopItem(
-                      context, snapshot, index, IapClient.IN_APP_NONCONSUMABLE);
+                      context, snapshot, index, IapClient.IN_APP_SUBSCRIPTION);
                 },
               );
             }

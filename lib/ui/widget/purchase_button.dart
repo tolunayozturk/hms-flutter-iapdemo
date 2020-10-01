@@ -39,14 +39,25 @@ Widget purchaseButton(
             break;
           case IapClient.IN_APP_NONCONSUMABLE:
             IapUtil.purchaseNonConsumableProduct(productId).then((res) {
-              switch(res.returnCode) {
+              switch (res.returnCode) {
                 case 0:
-                  log("purchaseNonConsumableProduct: " + productId + " success");
+                  log("purchaseNonConsumableProduct: " +
+                      productId +
+                      " success");
                   // Deliver the product
                   break;
                 case 60051:
                   log("user already owns this product: " + productId);
                   // user already owns the product, do necessary operations
+                  break;
+              }
+            });
+            break;
+          case IapClient.IN_APP_SUBSCRIPTION:
+            IapUtil.purchaseSubscription(productId).then((res) {
+              switch (res.returnCode) {
+                case 0:
+                  log("purchaseSubscription: " + productId + " success");
                   break;
               }
             });

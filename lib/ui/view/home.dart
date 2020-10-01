@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iap_demo/ui/view/non-consumables.dart';
+import 'package:flutter_iap_demo/ui/view/subscriptions.dart';
 
 import 'consumables.dart';
 
@@ -42,7 +43,10 @@ class _HomeState extends State<Home> {
             ),
             OutlineButton(
               child: Text("SUBSCRIPTIONS"),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Subscriptions()));
+              },
             ),
           ],
         ),
