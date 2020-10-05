@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iap_demo/utility/iap_util.dart';
 import 'package:huawei_iap/IapClient.dart';
+import 'package:huawei_iap/model/InAppPurchaseData.dart';
 
 Widget purchaseButton(
     BuildContext context, AsyncSnapshot snapshot, int index, int productType) {
@@ -34,6 +35,31 @@ Widget purchaseButton(
                     }
                   });
                   break;
+                // Redelivery Process for Consumables
+                case -1:
+                case 60051:
+                  IapUtil.obtainOwnedPurchases(IapClient.IN_APP_CONSUMABLE)
+                      .then((res) {
+                    if (res.returnCode != 0) {
+                      // Update UI
+                      return;
+                    }
+
+                    for (InAppPurchaseData purchase
+                        in res.inAppPurchaseDataList) {
+                      if (purchase.purchaseState == 0) {
+                        IapUtil.consumeProduct(purchase.purchaseToken)
+                            .then((value) {
+                          switch (res.returnCode) {
+                            case 0:
+                              log("consumeProduct: " + productId + " success");
+                              break;
+                          }
+                        });
+                      }
+                    }
+                  });
+                  break;
               }
             });
             break;
@@ -58,6 +84,7 @@ Widget purchaseButton(
               switch (res.returnCode) {
                 case 0:
                   log("purchaseSubscription: " + productId + " success");
+                  // Deliver the product.
                   break;
               }
             });

@@ -22,7 +22,7 @@ class _SubscriptionsState extends State<Subscriptions> {
       floatingActionButton: FloatingActionButton.extended(
         label: Text("MANAGE SUBSCRIPTIONS"),
         onPressed: () {
-          // TODO:
+          IapUtil.startIapActivityForSubscriptions();
         },
       ),
       body: Container(

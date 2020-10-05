@@ -11,6 +11,7 @@ import 'package:huawei_iap/model/ProductInfoReq.dart';
 import 'package:huawei_iap/model/ProductInfoResult.dart';
 import 'package:huawei_iap/model/PurchaseIntentReq.dart';
 import 'package:huawei_iap/model/PurchaseResultInfo.dart';
+import 'package:huawei_iap/model/StartIapActivityReq.dart';
 
 class IapUtil {
   /*
@@ -62,7 +63,7 @@ class IapUtil {
     try {
       ProductInfoReq req = new ProductInfoReq();
       req.priceType = IapClient.IN_APP_SUBSCRIPTION;
-      req.skuIds = ["prod_04", "prod_05"];
+      req.skuIds = ["prod_04"];
 
       ProductInfoResult res = await IapClient.obtainProductInfo(req);
 
@@ -156,6 +157,17 @@ class IapUtil {
     } on PlatformException catch (e) {
       log(e.toString());
       return null;
+    }
+  }
+
+  static Future<void> startIapActivityForSubscriptions() async {
+    try {
+      StartIapActivityReq req = new StartIapActivityReq();
+      req.type = IapClient.IN_APP_SUBSCRIPTION;
+
+      await IapClient.startIapActivity(req);
+    } on PlatformException catch (e) {
+      log(e.toString());
     }
   }
 }
