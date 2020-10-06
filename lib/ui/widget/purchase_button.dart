@@ -84,7 +84,7 @@ Widget purchaseButton(
               switch (res.returnCode) {
                 case 0:
                   log("purchaseSubscription: " + productId + " success");
-                  // Deliver the product.
+                  // Provide services for the subscription
                   break;
               }
             });

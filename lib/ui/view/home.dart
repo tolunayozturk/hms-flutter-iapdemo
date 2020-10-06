@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Spacer(),
             OutlineButton(
               child: Text("CONSUMABLES"),
               onPressed: () {
@@ -48,6 +49,7 @@ class _HomeState extends State<Home> {
                     MaterialPageRoute(builder: (context) => Subscriptions()));
               },
             ),
+            Spacer(),
           ],
         ),
       ),
