@@ -27,12 +27,7 @@ class IapUtil {
 
       ProductInfoResult res = await IapClient.obtainProductInfo(req);
 
-      List<ProductInfo> productInfoList = [];
-      for (ProductInfo p in res.productInfoList) {
-        productInfoList.add(p);
-      }
-
-      return productInfoList;
+      return res.productInfoList;
     } on PlatformException catch (e) {
       log(e.toString());
       return null;
@@ -47,12 +42,7 @@ class IapUtil {
 
       ProductInfoResult res = await IapClient.obtainProductInfo(req);
 
-      List<ProductInfo> productInfoList = [];
-      for (ProductInfo p in res.productInfoList) {
-        productInfoList.add(p);
-      }
-
-      return productInfoList;
+      return res.productInfoList;
     } on PlatformException catch (e) {
       log(e.toString());
       return null;
@@ -67,12 +57,7 @@ class IapUtil {
 
       ProductInfoResult res = await IapClient.obtainProductInfo(req);
 
-      List<ProductInfo> productInfoList = [];
-      for (ProductInfo p in res.productInfoList) {
-        productInfoList.add(p);
-      }
-
-      return productInfoList;
+      return res.productInfoList;
     } on PlatformException catch (e) {
       log(e.toString());
       return null;
